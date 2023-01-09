@@ -3,8 +3,12 @@ from abc import abstractmethod
 
 class TransitionRelation:
 
+    def __init__(self, roots: list):
+        self.roots = roots
+        pass
+
     @abstractmethod
-    def roots(self):
+    def getRoots(self):
         pass
 
     @abstractmethod
@@ -14,7 +18,10 @@ class TransitionRelation:
 
 class DictGraph(TransitionRelation):
 
-    def roots(self):
+    def __init__(self, roots: list):
+        super().__init__(roots)
+
+    def getRoots(self):
         pass
 
     def next(self, source):
@@ -22,8 +29,22 @@ class DictGraph(TransitionRelation):
 
 
 class NBits(TransitionRelation):
-    def roots(self):
-        pass
+
+    def __init__(self, roots, n: int):
+        super().__init__(roots)
+        self.nBits = n
+
+    def getRoots(self):
+        return self.roots
 
     def next(self, source):
-        pass
+        neighbours_list = []
+        for i in range(self.nBits):
+            neighbours_list.append(source ^ (1 << i))
+        return neighbours_list
+
+
+
+if __name__ == '__main__':
+    graph = NBits([0, 0, 0], 3)
+    print(graph.next(5))
