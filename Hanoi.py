@@ -10,8 +10,9 @@ class HanoiConfiguration:
         for i in range(self.nbDisk):
             self.towers[0].append(self.nbDisk - i)
 
-        print(self.towers)
-
+    def __str__(self):
+        return str(self.towers)
 
 if __name__ == '__main__':
     config = HanoiConfiguration(3, 4)
+    print(config)
