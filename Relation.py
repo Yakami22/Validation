@@ -22,7 +22,7 @@ class DictGraph(TransitionRelation):
         super().__init__(roots)
 
     def getRoots(self):
-        pass
+        return self.roots
 
     def next(self, source):
         pass
@@ -30,7 +30,7 @@ class DictGraph(TransitionRelation):
 
 class NBits(TransitionRelation):
 
-    def __init__(self, roots, n: int):
+    def __init__(self, roots: list, n: int):
         super().__init__(roots)
         self.nBits = n
 
@@ -44,7 +44,16 @@ class NBits(TransitionRelation):
         return neighbours_list
 
 
+class HanoiRules(TransitionRelation):
+    def __init__(self, roots: list):
+        super().__init__(roots)
+
+    def getRoots(self):
+        pass
+
+    def next(self, source):
+        pass
 
 if __name__ == '__main__':
     graph = NBits([0, 0, 0], 3)
-    print(graph.next(5))
+    print(graph.next(3))
