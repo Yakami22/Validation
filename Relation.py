@@ -1,5 +1,5 @@
 from abc import abstractmethod
-
+import copy
 
 class TransitionRelation:
 
@@ -79,9 +79,43 @@ class HanoiRules(TransitionRelation):
         pass
 
     def next(self, source):
-        pass
+        les_configs = []
+        print("config original")
+        print(source)
+
+        if source not in les_configs:
+            les_configs.append(source)
+
+        resultat = copy.deepcopy(source)
+        
+        for i in range(len(source)):
+            # len(source) = num des pegs 
+            resultat = copy.deepcopy(source)
+            if resultat[i]:
+                disk = resultat[i].pop()
+
+                for j in range(len(source)):
+
+                    # if i!=j and (not resultat[j] or resultat[j][-1]> disk):
+                    #     temp = copy.deepcopy(resultat)
+                    #     temp[j].append(disk)
+
+                    if i!=j and (not resultat[j]) :
+                        temp = copy.deepcopy(resultat)
+                        temp[j].append(disk)
+
+                        les_configs.append(temp)
+                    elif i!=j and resultat[j][-1]> disk:
+                        temp = copy.deepcopy(resultat)
+                        temp[j].append(disk)
+                        les_configs.append(temp)
+
+        print("list of all neighbours")
+        print(les_configs)
 
 if __name__ == '__main__':
     graph = NBits([0, 0, 0], 3)
-    print(graph.next(3))
-    print(graph.next_bis([0,0,1]))
+    myHanoi = HanoiRules([[3,1],[2], []])
+    # print(graph.next(3))
+    # print(graph.next_bis([0,0,1]))
+    print(myHanoi.next([[3,1],[2], []]))
