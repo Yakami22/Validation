@@ -21,11 +21,15 @@ class DictGraph(TransitionRelation):
     def __init__(self, roots: list):
         super().__init__(roots)
 
+    def __init__(self, roots: dict, entry : list):
+        super().__init__(roots)
+        self.entry = entry
+
     def getRoots(self):
-        return self.roots
+        return self.entry
 
     def next(self, source):
-        pass
+        return self.roots[source]
 
 
 class NBits(TransitionRelation):
@@ -119,3 +123,15 @@ if __name__ == '__main__':
     # print(graph.next(3))
     # print(graph.next_bis([0,0,1]))
     print(myHanoi.next([[3,1],[2], []]))
+    # graph2 = {
+    #     1: [2, 3],
+    #     2: [5, 6],
+    #     3: [],
+    #     4: [2, 4, 6],
+    #     5: [4],
+    #     6: [6]
+    # }
+    # dico = DictGraph(graph2,[1,2])
+    #
+    # print(dico.getRoots())
+    # print(dico.next(6))
