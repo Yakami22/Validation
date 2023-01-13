@@ -1,25 +1,12 @@
-from abc import ABC, abstractmethod
+from abc import abstractmethod
 
-class TransitionRelation(ABC):
-    #abstract method
-    @abstractmethod
-    def roots(self) :
-        pass
+class TransitionRelation:
 
     @abstractmethod
-    def next(self , source):
+    def getRoots(self):
         pass
 
-
-
-
-class DictGraph(TransitionRelation):
-    def roots(self) :
+    @abstractmethod
+    def next(self, source):
         pass
 
-    def next(self , source):
-        pass
-
-
-class Nbits(TransitionRelation):
-    pass

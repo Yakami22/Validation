@@ -3,10 +3,6 @@ import copy
 
 class TransitionRelation:
 
-    def __init__(self, roots: list):
-        self.roots = roots
-        pass
-
     @abstractmethod
     def getRoots(self):
         pass
@@ -15,21 +11,6 @@ class TransitionRelation:
     def next(self, source):
         pass
 
-
-class DictGraph(TransitionRelation):
-
-    def __init__(self, roots: list):
-        super().__init__(roots)
-
-    def __init__(self, roots: dict, entry : list):
-        super().__init__(roots)
-        self.entry = entry
-
-    def getRoots(self):
-        return self.entry
-
-    def next(self, source):
-        return self.roots[source]
 
 
 class NBits(TransitionRelation):

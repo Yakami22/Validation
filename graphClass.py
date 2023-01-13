@@ -72,15 +72,6 @@ def bfs_target(g,target) :
             frontier.append(n)
     return False
 
-# def on_entry(s,n,o) :
-#     return
-#
-# def on_known(s,n,o) :
-#     return
-#
-# def on_exit(s,n,o) :
-#     return
-
 def bfs_v2(g,acc,f1,f2,f3) :
     known = set()
     frontier = deque()
