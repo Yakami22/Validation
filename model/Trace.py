@@ -1,4 +1,4 @@
-from IdentityProxy import IdentityProxy
+from model.IdentityProxy import IdentityProxy
 
 
 class ParentTraceProxy(IdentityProxy) :

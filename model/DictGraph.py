@@ -1,4 +1,4 @@
-from Relation import TransitionRelation
+from src.Relation import TransitionRelation
 
 
 class DictGraph(TransitionRelation):
