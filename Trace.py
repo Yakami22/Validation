@@ -3,7 +3,7 @@ from IdentityProxy import IdentityProxy
 
 class ParentTraceProxy(IdentityProxy) :
     def __init__(self,operand,dict):
-        self.operand = operand
+        super.__init__(operand)
         self.dict = dict
 
     def roots(self):
