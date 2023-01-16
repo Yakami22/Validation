@@ -5,4 +5,4 @@ class Rule:
             self.action = action
 
         def execute(self, config):
-            return
+            return [self.action(config)]
