@@ -4,7 +4,7 @@ from model.TransitionRelation import TransitionRelation
 class NBits(TransitionRelation):
 
     def __init__(self, roots: list, n: int):
-        super().__init__(roots)
+        # super().__init__(roots)
         self.nBits = n
 
     def getRoots(self):
