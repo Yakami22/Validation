@@ -128,7 +128,7 @@ Scéance 3 :
         
         La méthode roots() retourne les racines des graphes. 
         
-````python
+```python
             def roots(self):
                 neighbours = self.operand.roots()
                 for n in neighbours:
@@ -139,7 +139,7 @@ Scéance 3 :
 
          La méthode next() retourne les prochaines noeuds des graphes. 
          
-````python
+```python
             def next(self, source):
                 neighbours = self.operand.next(source)
                 for n in neighbours:
