@@ -101,7 +101,7 @@ class HanoiRules(TransitionRelation):
         print(les_configs)
 
 
-    
+
 
 if __name__ == '__main__':
     graph = NBits([0, 0, 0], 3)
