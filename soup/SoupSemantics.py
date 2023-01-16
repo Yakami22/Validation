@@ -1,4 +1,4 @@
-from model.SemanticTransitionRelation import SemanticTransitionRelation
+from soup.SemanticTransitionRelation import SemanticTransitionRelation
 import copy
 
 
@@ -15,7 +15,8 @@ class SoupSemantics(SemanticTransitionRelation):
         # pass
 
     def execute(self, action, source):
-        t = copy.copy(source)
+        # t = copy.copy(source)
+        t = copy.deepcopy(source)
         return action.execute(t)
 
     # def rules():
