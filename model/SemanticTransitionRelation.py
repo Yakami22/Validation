@@ -10,3 +10,5 @@ class SemanticTransitionRelation:
     def execute( action, source):
         #return List C
         pass
+
+    #str2tr (str) : Tr
