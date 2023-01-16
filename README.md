@@ -138,6 +138,6 @@ Scéance 3 :
         Remarque; À cette étape on a également séparé les classes dans les packages pour faciliter la modularité.
 
 Scéance 4 :
-notre propre langage
+notre propre langage + alice et bob
 create configuartion Aconfig
 create class copy class c1 def init

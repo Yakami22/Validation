@@ -18,5 +18,5 @@ class SoupSemantics(SemanticTransitionRelation):
         t = copy.copy(source)
         return action.execute(t)
 
-    def rules():
-        pass
+    # def rules():
+    #     pass

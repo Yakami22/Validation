@@ -1,5 +1,5 @@
 class SemanticTransitionRelation:
-    def initialConfiguration():
+    def initialConfiguration(self):
         #returns a list C
         pass 
 
