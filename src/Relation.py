@@ -100,6 +100,9 @@ class HanoiRules(TransitionRelation):
         print("list of all neighbours")
         print(les_configs)
 
+
+    
+
 if __name__ == '__main__':
     graph = NBits([0, 0, 0], 3)
     myHanoi = HanoiRules([[3,1],[2], []])

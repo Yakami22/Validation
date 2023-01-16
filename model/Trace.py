@@ -10,6 +10,7 @@ class ParentTraceProxy(IdentityProxy):
         '''
         Should return the roots of
         :return: graph roots
+        parent racines sont eux meme
         '''
         neighbours = self.operand.roots()
         for n in neighbours:
