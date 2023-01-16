@@ -2,7 +2,7 @@ from abc import abstractmethod
 
 class AConfig:
     @abstractmethod
-    def copy():
+    def copy(self):
         pass
 
 
