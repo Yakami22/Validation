@@ -12,7 +12,7 @@ def bfs(graph,
     while frontier or at_start:
         source = None
         if at_start:
-            neighbours = graph.roots()
+            neighbours = graph.getRoots()
             at_start = False
         else:
             source = frontier.popleft()
