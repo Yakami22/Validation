@@ -1,5 +1,6 @@
 from abc import abstractmethod
 
+
 class AConfig:
     @abstractmethod
     def copy(self):
@@ -9,7 +10,7 @@ class AConfig:
 class C1(AConfig):
     def __init__(self, x):
         self.x = x
-    
-    def copy():
+
+    def copy(self):
         # return C1(self.x)
         return

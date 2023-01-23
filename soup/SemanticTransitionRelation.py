@@ -3,11 +3,11 @@ class SemanticTransitionRelation:
         #returns a list C
         pass 
 
-    def enabledActions(source):
+    def enabledActions(self, source):
         #return List<A>
         pass
 
-    def execute( action, source):
+    def execute(self, action, source):
         #return List C
         pass
 

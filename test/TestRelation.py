@@ -3,6 +3,8 @@ import unittest
 from model.DictGraph import DictGraph
 from model.Hanoi import HanoiConfiguration, HanoiRules
 from model.NBits import NBits
+from soup.Rule import Rule
+from soup.SoupProgram import SoupProgram
 
 
 class MyTestCase(unittest.TestCase):
@@ -11,6 +13,8 @@ class MyTestCase(unittest.TestCase):
         self.nBits = NBits([0, 1, 2], 3)
         self.hanoiConfiguration = HanoiConfiguration(3, 4)
         self.hanoi = HanoiRules([[3, 1], [2], []])
+        #self.soup = SoupProgram(None)
+        #self.rule_1 = Rule("r1", lambda r: True, )
 
     def test_dictGraph(self):
         self.assertEqual(self.dictGraph.next(1), [2, 3])
@@ -27,7 +31,10 @@ class MyTestCase(unittest.TestCase):
         self.assertIn([[3], [2, 1], []], self.hanoi.next([[3, 1], [2], []]))
         self.assertIn([[3], [2], [1]], self.hanoi.next([[3, 1], [2], []]))
         self.assertIn([[3, 1], [], [2]], self.hanoi.next([[3, 1], [2], []]))
-        self.assertNotIn([[3, 2, 1], [], []], self.hanoi.next([[3, 1], [2], []]))
+        self.assertNotIn([[3, 1, 2], [2], []], self.hanoi.next([[3, 1], [2], []]))
+
+    #def test_soup(self):
+
 
 
 if __name__ == '__main__':

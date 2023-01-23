@@ -22,10 +22,3 @@ def get_trace(dict, target):
     trace.reverse()
     return trace
 
-if __name__ == '__main__':
-    h = HanoiConfiguration(3,3)
-    pDict = {}
-    ptp = ParentTraceProxy(h,pDict)
-    [p,found,count,target] = predicate_finder(ptp,) #lambda function for Hanoi
-    dict = {1:2 , 2:1, 3:1, 5:2, 6:2, 4:5 }
-    print(get_trace(dict, 6))

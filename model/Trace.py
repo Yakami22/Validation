@@ -2,9 +2,9 @@ from model.IdentityProxy import IdentityProxy
 
 
 class ParentTraceProxy(IdentityProxy):
-    def __init__(self, operand, dict):
+    def __init__(self, operand, dico):
         super.__init__(operand)
-        self.dict = dict
+        self.dict = dico
 
     def roots(self):
         '''

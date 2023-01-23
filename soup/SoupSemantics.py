@@ -1,4 +1,4 @@
-from SemanticTransitionRelation import SemanticTransitionRelation
+from soup.SemanticTransitionRelation import SemanticTransitionRelation
 import copy
 
 
