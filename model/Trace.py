@@ -29,3 +29,13 @@ class ParentTraceProxy(IdentityProxy):
             if n not in self.dict:
                 self.dict[n] = source
         return neighbours
+
+    def get_trace(dic, target):
+        res = [target]
+        courant = target
+        while courant != dic[courant]:
+            courant = dic[res[-1]]
+            res.append(courant)
+            # print(courant.conf)
+        res.reverse()
+        return res
