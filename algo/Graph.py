@@ -1,41 +1,42 @@
 from collections import deque
 
 graph = {
-   "a" : ["b","c"],
-   "b" : ["a", "d"],
-   "c" : ["a", "d"],
-   "d" : ["e"],
-   "e" : ["d"]
+   "a": ["b", "c"],
+   "b": ["a", "d"],
+   "c": ["a", "d"],
+   "d": ["e"],
+   "e": ["d"]
 }
 
 graph2 = {
-    1 : [2,3],
-    2 : [5,6],
-    3 : [],
-    4 : [4,6],
-    5 : [4],
-    6 : [6]
+    1: [2, 3],
+    2: [5, 6],
+    3: [],
+    4: [4, 6],
+    5: [4],
+    6: [6]
 }
 
 graph3 = {
-    0 : [1,3],
-    1 : [2],
-    2 : [0],
-    3 : [3,4],
-    4 : [1,5],
-    5 : [],
-    6 : []
+    0: [1, 3],
+    1: [2],
+    2: [0],
+    3: [3, 4],
+    4: [1, 5],
+    5: [],
+    6: []
 }
 
+
 def recursive_dfs(graph, node, visited=None):
-    '''
+    """
     Function to go through a graph recursively
 
     :param graph: the graph to use
     :param node: the node where we start
     :param visited: list of node visited initially null
     :return: list of node
-    '''
+    """
 
     if visited is None:
         visited = []
@@ -52,13 +53,13 @@ def recursive_dfs(graph, node, visited=None):
 
 
 def iterative_bfs(graph, start):
-    '''
+    """
     Iterative function for going through a graph
 
     :param graph: the graph to go through
     :param start: the node where to start
     :return: a list of all the nodes
-    '''
+    """
     visited = []
     queue = deque()
     queue.append(start)
@@ -73,5 +74,4 @@ def iterative_bfs(graph, start):
     return visited
 
 
-print(recursive_dfs(graph3,0))
-# print(iterative_bfs(graph2,1))
+print(recursive_dfs(graph3, 0))
