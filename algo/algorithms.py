@@ -3,17 +3,24 @@ from model.Hanoi import HanoiConfiguration
 from model.Trace import ParentTraceProxy
 
 
-def get_trace(dic, target):
-    result, tmp = dict(target)
-    if result:
-        trace = []
-        initial = target.initial()[0]
-        while tmp != initial:
-            trace.append(tmp)
-            tmp = target.parents[tmp]
-        trace.append(initial)
-        trace.reverse()
-        return trace
+def get_trace(dict, target):
+    # result, tmp = dict(target)
+    # if result:
+    #     trace = []
+    #     initial = target.initial()[0]
+    #     while tmp != initial:
+    #         trace.append(tmp)
+    #         tmp = target.parents[tmp]
+    #     trace.append(initial)
+    #     trace.reverse()
+    #     return trace
+    trace = [target]
+    current = target
+    while current != dict[current]:
+        current = dict[trace[-1]]
+        trace.append(current)
+    trace.reverse()
+    return trace
 
 if __name__ == '__main__':
     h = HanoiConfiguration(3,3)
