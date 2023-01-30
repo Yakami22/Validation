@@ -27,15 +27,16 @@ class HanoiConfiguration(TransitionRelation):
                         next_states.append(temp)
         return next_states
 
+if __name__ == '__main__':
 
-hanoi = HanoiConfiguration(3, 3)
-initial = hanoi.initial()
-print('Graph initial: {}'.format(initial))
-nextHanoi = hanoi.next(initial)
-print('Next config : {}'.format(nextHanoi))
+    hanoi = HanoiConfiguration(3, 3)
+    initial = hanoi.initial()
+    print('Graph initial: {}'.format(initial))
+    nextHanoi = hanoi.next(initial)
+    print('Next config : {}'.format(nextHanoi))
 
-print('Le next de  : {} est  : {}'.format(nextHanoi[0], hanoi.next(nextHanoi[0])))
+    print('Le next de  : {} est  : {}'.format(nextHanoi[0], hanoi.next(nextHanoi[0])))
 
-print('Le next de  : {} est  : {}'.format(nextHanoi[1], hanoi.next(nextHanoi[1])))
+    print('Le next de  : {} est  : {}'.format(nextHanoi[1], hanoi.next(nextHanoi[1])))
 
-print('Le next de  : {} est  : {}'.format(nextHanoi[2], hanoi.next(nextHanoi[2])))
+    print('Le next de  : {} est  : {}'.format(nextHanoi[2], hanoi.next(nextHanoi[2])))
