@@ -1,43 +1,31 @@
-from model.TransitionRelation import TransitionRelation
+from algo.Traversal import predicate_finder
+from src.Relation import TransitionRelation
 
 
 class NBits(TransitionRelation):
 
     def __init__(self, roots: list, n: int):
-        # super().__init__(roots)
+        self.initial = roots
         self.nBits = n
 
-    def getRoots(self):
-        return self.roots
+    def roots(self):
+        return self.initial
 
     def next(self, source):
-        neighbours_list = []
+        neighbours = []
         for i in range(self.nBits):
-            neighbours_list.append(source ^ (1 << i))
-        return neighbours_list
+            neighbours.append(source ^ (1 << i))
+        return neighbours
 
-    def next_bis(self, source):
-        resultat = []
-        test = []
-        print("source")
-        print(source)
-        if source not in test:
-            test.append(source)
-        resultat = source.copy()
 
-        for i in range(len(source)):
+def binary_print(s):
+    return set(map(
+        lambda x: "{0:03b}".format(x),
+        s))
 
-            resultat = source.copy()
 
-            if (resultat[i] == 0):
-                resultat[i] = 1
-            else:
-                resultat[i] = 0
+if __name__ == '__main__':
 
-            print("neighbour ")
-            print(resultat)
-            if resultat not in test:
-                test.append(resultat)
-
-        print("list of neighbours in binary ")
-        print(test)
+    x = 16
+    [pred, found, count, target], known = predicate_finder(NBits([0], 3), lambda n: n == x)
+    print(f'{x} reachable, found: ', found, ' [', target, '] explored ', count, 'nodes, known: ', binary_print(known))

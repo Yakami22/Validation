@@ -12,7 +12,7 @@ def bfs(graph,
     while frontier or at_start:
         source = None
         if at_start:
-            neighbours = graph.getRoots()
+            neighbours = graph.roots()
             at_start = False
         else:
             source = frontier.popleft()
@@ -22,11 +22,10 @@ def bfs(graph,
                 if on_known(source, n, acc):
                     return acc, known
                 continue
-            else:
-                if on_entry(source, n, acc):
-                    return acc, known
-                known.add(n)
-                frontier.append(n)
+            known.add(n)
+            frontier.append(n)
+            if on_entry(source, n, acc):
+                return acc, known
         if on_exit(source, acc):
             return acc, known
     return acc, known
@@ -40,7 +39,10 @@ def predicate_finder(
         a[2] += 1
         # check predicate
         a[1] = predicate(n)
+        # set the node that checks the predicate in the last field of the accumulator
+        if a[1]:
+            a[3] = n
         # return true if predicate is true - stop the traversal
         return a[1]
 
-    return bfs(graph, [predicate, False, 0], on_entry=check_predicate)
+    return bfs(graph, [predicate, False, 0, None], on_entry=check_predicate)
