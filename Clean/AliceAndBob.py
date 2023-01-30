@@ -1,7 +1,4 @@
-from Clean.Algorithms import predicate_model_checker
-from Clean.Models import STR2TR
-from Clean.SoupRules import BehaviorSoup, BehaviorSoupSemantics, soup_predicate_model_checker
-from Clean.Traversal import bfs
+from Clean.SoupRules import BehaviorSoup, soup_predicate_model_checker, BehaviorSoupSemantics
 
 
 class ConfigurationAliceBob:
@@ -48,10 +45,11 @@ def AliceAndBob():
 
 if __name__ == '__main__':
     program = AliceAndBob()
+
     soup_predicate_model_checker(program, lambda c: c.bobFlag == 0)
 
     print("deadlock: ")
-    soup_predicate_model_checker(program, lambda c: len(program.actions(c)) == 0)
+    soup_predicate_model_checker(program, lambda c: len(BehaviorSoupSemantics(program).actions(c)) == 0)
 
     print("Critical Section: ")
     soup_predicate_model_checker(program, lambda c: c.aliceFlag == 1 and c.bobFlag == 1)
