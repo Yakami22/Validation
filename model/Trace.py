@@ -4,7 +4,7 @@ from model.TransitionRelation import TransitionRelation
 
 class ParentTraceProxy(IdentityProxy):
     def __init__(self, operand : TransitionRelation, dict):
-        super.__init__(operand)
+        super().__init__(operand)
         self.dict = dict
 
     def roots(self):
@@ -13,7 +13,7 @@ class ParentTraceProxy(IdentityProxy):
         :return: graph roots
         parent racines sont eux meme
         '''
-        neighbours = self.operand.roots()
+        neighbours = self.operand.getRoots()
         for n in neighbours:
             self.dict[n] = n
         return neighbours
