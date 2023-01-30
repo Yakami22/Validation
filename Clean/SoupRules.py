@@ -15,6 +15,9 @@ class Behavior:
             return False
         return self.name == other.name and self.guard == other.guard and self.action == other.action
 
+    def __str__(self):
+        return self.name
+
 
 class BehaviorSoup:
     def __init__(self, initial):
