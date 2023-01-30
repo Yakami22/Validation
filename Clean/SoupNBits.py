@@ -33,10 +33,10 @@ def create_nbits_soup(n):
 
 if __name__ == '__main__':
 
-    x = 16
+    x = 10
     soup_predicate_model_checker(create_nbits_soup(3), lambda n: n.PC == x)
 
-    x = 5
+    x = 6
     soup_predicate_model_checker(create_nbits_soup(3), lambda n: n.PC == x)
 
     x = 1
