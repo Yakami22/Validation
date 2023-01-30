@@ -1,6 +1,6 @@
 # Validation
 
-Scéance 1 :
+Séance 1 :
 
     Algorithme de parcours en largeur (bfs).
 
@@ -31,7 +31,7 @@ Scéance 1 :
 
         Il faut placer ces fonctions dans le bon endroit dans la fonction bfs.
 
-Scéance 2 :
+Séance 2 :
 
       Créer la classe abstraite TransitionRelation, qui contient les méthode abstraites get_roots  et next:
         Get_roots retourne les racines d'une structure.
@@ -93,7 +93,7 @@ Scéance 2 :
 
      Remarque: Dans ces méthodes on se sert des deepcopy de nos listes.
 
-Scéance 3 :
+Séance 3 :
 
        L'objective de cette séance est la Géneration de trace du graphe.
        On cherche à construire le graphe des parents en se servant des methodes next() et roots().
@@ -137,7 +137,7 @@ Scéance 3 :
 
         Remarque; À cette étape on a également séparé les classes dans les packages pour faciliter la modularité.
 
-Scéance 4 :
+Séance 4 :
 notre propre langage + alice et bob
 create configuartion Aconfig
 create class copy class c1 def init
