@@ -1,50 +1,41 @@
 import copy
 
-from model.TransitionRelation import TransitionRelation
-
-
-class HanoiConfiguration:
-    def __init__(self, nbTower: int, nbDisk: int):
-        self.nbTower = nbTower
-        self.nbDisk = nbDisk
+from Models import TransitionRelation
+class HanoiConfiguration(TransitionRelation):
+    def __init__(self, nb_tower: int, nb_disk: int):
+        self.nbTower = nb_tower
+        self.nbDisk = nb_disk
         self.towers = []
 
-        for i in range(self.nbTower):
-            self.towers.append([])
-
-        for i in range(self.nbDisk):
-            self.towers[0].append(self.nbDisk - i)
-
-    def __str__(self):
-        return str(self.towers)
-
-
-class HanoiRules(TransitionRelation):
-    def __init__(self, roots: list):
-        # super().__init__(roots)
-        self.roots = roots
-
-    def getRoots(self):
-        pass
+    def initial(self):
+        return [[(self.nbDisk - i) for i in range(self.nbDisk)]] + [[] for _ in range(self.nbTower - 1)]
 
     def next(self, source):
-        les_configs = []
 
-        if source not in les_configs:
-            les_configs.append(source)
+        next_states = []
+        if source not in next_states:
+            next_states.append(source)
 
-        for i in range(len(source)):
-            resultat = copy.deepcopy(source)
-            if resultat[i]:
-                disk = resultat[i].pop()
-                for j in range(len(source)):
-                    if i != j and (not resultat[j]):
-                        temp = copy.deepcopy(resultat)
+        for i in range(self.nbTower):
+            results = copy.deepcopy(source)
+            if results[i]:
+                disk = results[i].pop()
+                for j in range(self.nbTower):
+                    if i != j and (not results[j] or results[j][-1] > disk):
+                        temp = copy.deepcopy(results)
                         temp[j].append(disk)
-                        les_configs.append(temp)
-                    elif i != j and resultat[j][-1] > disk:
-                        temp = copy.deepcopy(resultat)
-                        temp[j].append(disk)
-                        les_configs.append(temp)
+                        next_states.append(temp)
+        return next_states
 
-        return les_configs
+
+hanoi = HanoiConfiguration(3, 3)
+initial = hanoi.initial()
+print('Graph initial: {}'.format(initial))
+nextHanoi = hanoi.next(initial)
+print('Next config : {}'.format(nextHanoi))
+
+print('Le next de  : {} est  : {}'.format(nextHanoi[0], hanoi.next(nextHanoi[0])))
+
+print('Le next de  : {} est  : {}'.format(nextHanoi[1], hanoi.next(nextHanoi[1])))
+
+print('Le next de  : {} est  : {}'.format(nextHanoi[2], hanoi.next(nextHanoi[2])))
