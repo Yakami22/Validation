@@ -33,19 +33,19 @@ class BehaviorSoup:
 
 class BehaviorSoupSemantics(SemanticTransitionRelations):
 
-    def __init__(self, soup):
-        self.soup = soup
+    def __init__(self, prog):
+        self.program = prog
 
     def initial(self):
-        return [self.soup.initial]
+        return [self.program.initial]
 
     def actions(self, configuration):
-        return list(map(lambda ga: ga.action, filter(lambda ga: ga.guard(configuration), self.soup.behaviors)))
+        return list(map(lambda ga: ga.action, filter(lambda ga: ga.guard(configuration), self.program.behaviors)))
 
     def execute(self, action, configuration):
         target = copy.deepcopy(configuration)
         the_output = action(target)
-        return target
+        return [target]
 
 
 def soup_predicate_model_checker(soup_program, predicate):

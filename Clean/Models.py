@@ -75,7 +75,7 @@ class STR2TR(TransitionRelation):
     def __init__(self, str):
         self.operand = str
 
-    def initial(self):
+    def roots(self):
         return self.operand.initial()
 
     def next(self, c):
