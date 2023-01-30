@@ -1,6 +1,8 @@
 from abc import abstractmethod
 import copy
 
+from algo.Traversal import bfs, predicate_finder
+
 
 class TransitionRelation:
 
@@ -13,47 +15,47 @@ class TransitionRelation:
         pass
 
 
-class NBits(TransitionRelation):
-
-    def __init__(self, roots: list, n: int):
-        # super().__init__(roots)
-        self.roots = roots
-        self.nBits = n
-
-    def getRoots(self):
-        return self.roots
-
-    def next(self, source):
-        neighbours_list = []
-        for i in range(self.nBits):
-            neighbours_list.append(source ^ (1 << i))
-        return neighbours_list
-
-    def next_bis(self, source):
-        resultat = []
-        test = []
-        print("source")
-        print(source)
-        if source not in test:
-            test.append(source)
-        resultat = source.copy()
-
-        for i in range(len(source)):
-
-            resultat = source.copy()
-
-            if (resultat[i] == 0):
-                resultat[i] = 1
-            else:
-                resultat[i] = 0
-
-            print("neighbour ")
-            print(resultat)
-            if resultat not in test:
-                test.append(resultat)
-
-        print("list of neighbours in binary ")
-        print(test)
+# class NBits(TransitionRelation):
+#
+#     def __init__(self, roots: list, n: int):
+#         # super().__init__(roots)
+#         self.roots = roots
+#         self.nBits = n
+#
+#     def getRoots(self):
+#         return self.roots
+#
+#     def next(self, source):
+#         neighbours_list = []
+#         for i in range(self.nBits):
+#             neighbours_list.append(source ^ (1 << i))
+#         return neighbours_list
+#
+#     def next_bis(self, source):
+#         resultat = []
+#         test = []
+#         print("source")
+#         print(source)
+#         if source not in test:
+#             test.append(source)
+#         resultat = source.copy()
+#
+#         for i in range(len(source)):
+#
+#             resultat = source.copy()
+#
+#             if (resultat[i] == 0):
+#                 resultat[i] = 1
+#             else:
+#                 resultat[i] = 0
+#
+#             print("neighbour ")
+#             print(resultat)
+#             if resultat not in test:
+#                 test.append(resultat)
+#
+#         print("list of neighbours in binary ")
+#         print(test)
 
 
 class HanoiRules(TransitionRelation):
@@ -100,12 +102,38 @@ class HanoiRules(TransitionRelation):
         print(les_configs)
 
 
+
+
+
+
 if __name__ == '__main__':
-    graph = NBits([0, 0, 0], 3)
-    myHanoi = HanoiRules([[3, 1], [2], []])
+    # graph = NBits([0,1,0], 3)
+
+    def fx(s,v,acc):
+        acc[0]+=1
+        return False
+
+
+
+
+
+    # x = 16
+    # print(predicate_finder(NBits([0], 3), lambda n: n == x))
+    # x = 16
+    # [pred, found, count, target], known = predicate_finder(NBits([0], 3), lambda n: n == x)
+    # print(f'{x} reachable, found: ', found, ' [', target, '] explored ', count, 'nodes, known: ', binary_print(known))
+
+    # graphy = NBits([3], 3)
+    # myHanoi = HanoiRules([[3, 1], [2], []])
     # print(graph.next(3))
-    # print(graph.next_bis([0,0,1]))
-    print(myHanoi.next([[3, 1], [2], []]))
+    # print(graph.next_bis([0,1,1]))
+
+    # print(graph.next(2))
+
+    # print(myHanoi.next([[3, 1], [2], []]))
+
+    # print(bfs(graph, [0], fx , None, None ))
+
     # graph2 = {
     #     1: [2, 3],
     #     2: [5, 6],
