@@ -64,8 +64,8 @@ def soup_hanoi(nbStacks, nbDisks):
     iC = hanConf
     prog = BehaviorSoup(iC)
 
-    for i in range(3):
-        for j in range(3):
+    for i in range(nbStacks):
+        for j in range(nbStacks):
             if i != j:
                 prog.add('Déplacer disque de la tour Num {} vers tour num {}'.format(i, j), guarde_def(i, j), action_def(i, j))
     for k in range(len(prog.behaviors)):
@@ -91,5 +91,6 @@ if __name__ == '__main__':
 #-----------------
 
     #Hanoi soup
+    #soup_hanoi(nbStacks, nbDisks)
 
-    soup_hanoi(3,3)
+    soup_hanoi(4,3)
