@@ -33,13 +33,6 @@ class HanoiConfiguration(TransitionRelation):
 
 
 
-def hanoi_soap(nbStacks, nbDisks):
-    i_conf = HanoiConfiguration(nbStacks, nbDisks)
-    soup = BehaviorSoup(i_conf)
-    for i in range(nbStacks):
-        for j in range(nbStacks):
-            soup.add(f'{i}-{j}', guarde_def(i, j), action_def(i, j))
-    return soup
 
 
 def guarde_def(i, j):
@@ -71,8 +64,8 @@ def soup_hanoi(nbStacks, nbDisks):
     iC = hanConf
     prog = BehaviorSoup(iC)
 
-    for i in range(3):
-        for j in range(3):
+    for i in range(nbStacks):
+        for j in range(nbStacks):
             if i != j:
                 prog.add('Déplacer disque de la tour Num {} vers tour num {}'.format(i, j), guarde_def(i, j), action_def(i, j))
     for k in range(len(prog.behaviors)):
@@ -80,10 +73,12 @@ def soup_hanoi(nbStacks, nbDisks):
 
 if __name__ == '__main__':
 
-    hanoi = HanoiConfiguration(3, 3)
-    initial = hanoi.initial()
+    #Hanoi Configuration
+
+    # hanoi = HanoiConfiguration(3, 3)
+    # initial = hanoi.initial()
     # print('Graph initial: {}'.format(initial))
-    nextHanoi = hanoi.next(initial)
+    # nextHanoi = hanoi.next(initial)
     # print('Next config : {}'.format(nextHanoi))
     #
     # print('Le next de  : {} est  : {}'.format(nextHanoi[0], hanoi.next(nextHanoi[0])))
@@ -95,4 +90,7 @@ if __name__ == '__main__':
 
 #-----------------
 
-soup_hanoi(3,3)
+    #Hanoi soup
+    #soup_hanoi(nbStacks, nbDisks)
+
+    soup_hanoi(4,3)
