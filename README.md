@@ -44,6 +44,7 @@ Afin d'améliorer le code nous avons créé des **gardes** qui correspondent à 
 Pour faciliter le suivi, nous avons créé des **traces** qui indiquent les actions effectuées.
 
 ## Alice et Bob
+Alice et Bob souhaitent tous les deux accéder à la section critique. 
 <p align="center">
     <img src="https://user-images.githubusercontent.com/91531132/217011692-a1076390-2992-4eaf-9f78-7cdb414af737.png" width=360 height=150>
 </p>
