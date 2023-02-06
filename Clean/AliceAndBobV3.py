@@ -131,3 +131,6 @@ if __name__ == '__main__':
         print(f'Trace : {checker}')
     else:
         print('No Trace.')
+from Clean.SoupRules import BehaviorSoup, soup_predicate_model_checker, BehaviorSoupSemantics
+
+
