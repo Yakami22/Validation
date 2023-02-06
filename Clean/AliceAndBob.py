@@ -1,3 +1,4 @@
+from Clean.Models import STR2TR
 from Clean.SoupRules import BehaviorSoup, soup_predicate_model_checker, BehaviorSoupSemantics
 
 
@@ -42,14 +43,13 @@ def AliceAndBob():
 
     return soup
 
-
 if __name__ == '__main__':
     program = AliceAndBob()
 
     soup_predicate_model_checker(program, lambda c: c.bobFlag == 0)
 
-    print("deadlock: ")
-    soup_predicate_model_checker(program, lambda c: len(BehaviorSoupSemantics(program).actions(c)) == 0)
+    # print("deadlock: ")
+    # soup_predicate_model_checker(program, lambda c: len(BehaviorSoupSemantics().actions(c)) == 0)
 
-    print("Critical Section: ")
-    soup_predicate_model_checker(program, lambda c: c.aliceFlag == 1 and c.bobFlag == 1)
+    # print("Critical Section: ")
+    # soup_predicate_model_checker(program, lambda c: c.aliceFlag == 1 and c.bobFlag == 1)

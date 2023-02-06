@@ -5,11 +5,14 @@ from soup.SemanticTransitionRelation import SemanticTransitionRelation
 class Str2Tr(TransitionRelation):
 
     def __init__(self, operand):
-        pass
+        self.operand = operand
 
     def getRoots(self):
         # return self.getRoots()
         return SemanticTransitionRelation.initialConfiguration()
+
+    def initial(self):
+        return self.operand.initial()
 
     def next(self, source):
         A = SemanticTransitionRelation.enabledActions(source)

@@ -49,10 +49,10 @@ class BehaviorSoupSemantics(SemanticTransitionRelations):
     def actions(self, configuration):
         return list(map(lambda ga: ga.action, filter(lambda ga: ga.guard(configuration), self.program.behaviors)))
 
-    def execute(self, action, configuration):
+    def execute(self, beh, configuration):
         target = copy.deepcopy(configuration)
-        print(action)
-        action(target)
+        print(beh)
+        beh(target)
         return [target]
 
 
