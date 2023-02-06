@@ -45,7 +45,7 @@ Pour faciliter le suivi, nous avons créé des **traces** qui indiquent les acti
 
 ## Alice et Bob
 <p align="center">
-    <img src="https://user-images.githubusercontent.com/91531132/217011692-a1076390-2992-4eaf-9f78-7cdb414af737.png" width=300 height=300>
+    <img src="https://user-images.githubusercontent.com/91531132/217011692-a1076390-2992-4eaf-9f78-7cdb414af737.png" width=360 height=150>
 </p>
 
 ## Tests
