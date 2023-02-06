@@ -49,6 +49,13 @@ class ParentTraceProxy(IdentityProxy):
                 self.parents[n] = [configuration]
         return neighbours
 
+    #--
+    def roots(self):
+        neighbours = self.operand.roots()
+        for n in neighbours:
+            self.parents[n]=n
+        return neighbours  # retourne le root du graphe
+
 
 class SemanticTransitionRelations:
     @abstractmethod
@@ -84,3 +91,11 @@ class STR2TR(TransitionRelation):
             target = self.operand.execute(c, a)
             targets.append(target)
         return targets
+
+    #--
+    # def next(self, source):
+    #     Actions = self.str.enabledActions(source)
+    #     r = []
+    #     for action in Actions:
+    #         r.extend(self.str.execute(action, source))
+    #     return r
