@@ -16,7 +16,7 @@ class ABConfig(list):
         if self[0] == -1:
             am = '\033[1;32;40m A  \033[0m'
         elif self[0] == 0:
-            aj = '\033[1;32;40mAlic\033[0m'
+            aj = '\033[1;32;40mAlice\033[0m'
         else:
             am = '\033[1;32;40mA ok\033[0m'
         if self[1] == -1:
@@ -121,16 +121,5 @@ if __name__ == '__main__':
     print('\n-- Loops --\n')
     head, loop = loop_model_checker(behavior_soup, alice_is_accepted)
     print(f'Head : {head}\nLoop : {loop}')
-
-    print('\n-- Buchi checker --')
-    exclusion_buchi_output = exclusion_buchi()
-    semantic = BuchiSemantics(exclusion_buchi_output)
-    kripkeBuchiSTR = KripkeBuchiSTR(behavior_soup, semantic)
-    checker = predicate_model_checker_v2(kripkeBuchiSTR, lambda c: semantic.pred(c[1]))
-    if checker:
-        print(f'Trace : {checker}')
-    else:
-        print('No Trace.')
-from Clean.SoupRules import BehaviorSoup, soup_predicate_model_checker, BehaviorSoupSemantics
 
 

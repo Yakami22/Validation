@@ -38,7 +38,6 @@ class ParentStoreProxy(IdentityProxy):
         self.parents = {}
 
     def next(self, config):
-        # print((self.operand))
         neighs = self.operand.next(config)
         for n in neighs:
             if n not in self.parents:

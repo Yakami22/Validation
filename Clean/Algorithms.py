@@ -11,7 +11,8 @@ def get_trace_v2(afind_actepting_bfs, parentProxy):
         trace = []
         intial = parentProxy.initial()[0]
         while tmp != intial:
-            trace.append(tmp)
+            # trace.append(tmp)
+            trace.extend(tmp)
             tmp = parentProxy.parents[tmp]
         trace.append(intial)
         trace.reverse()
