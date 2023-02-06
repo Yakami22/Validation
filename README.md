@@ -37,12 +37,13 @@ La méthode décrite précédemment renvoie les configurations possibles au proc
 Pour la configuration ci-dessus les états suivants sont montrés ci-dessous.
 ![image](https://user-images.githubusercontent.com/91531132/217007086-8d0c2a2a-8d13-4fa4-ac6e-722917f0d489.png)
 
-## Guardes et trace
+## Gardes et trace
 Jusque là, les régles spécifiques à chaque modèle (n bits, Hanoi, etc.) étaient définie dans la méthode indiquant les états suivants possibles.
 Afin d'améliorer le code nous avons créé des **gardes** qui correspondent à des régles. Si une garde n'est pas respectée, l'action n'est pas effectué.
 
-Pour faciliter le suivi, nous avons créé des **traces* qui indiquent les actions effectuées.
+Pour faciliter le suivi, nous avons créé des **traces** qui indiquent les actions effectuées.
 
 ## Alice et Bob
 
 ## Tests
+Les tests unitaires ont été faits avec [unittest](https://docs.python.org/fr/3/library/unittest.html).
