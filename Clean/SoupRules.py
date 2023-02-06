@@ -10,10 +10,16 @@ class Behavior:
         self.guard = guard
         self.action = action
 
+    def __repr__(self):
+        return self.__str__()
+
     def __eq__(self, other):
         if not isinstance(other, Behavior):
             return False
         return self.name == other.name and self.guard == other.guard and self.action == other.action
+
+    def __str__(self):
+        return self.name
 
 
 class BehaviorSoup:
@@ -34,6 +40,7 @@ class BehaviorSoup:
 class BehaviorSoupSemantics(SemanticTransitionRelations):
 
     def __init__(self, prog):
+        super().__init__()
         self.program = prog
 
     def initial(self):
@@ -44,7 +51,8 @@ class BehaviorSoupSemantics(SemanticTransitionRelations):
 
     def execute(self, action, configuration):
         target = copy.deepcopy(configuration)
-        the_output = action(target)
+        print(action)
+        action(target)
         return [target]
 
 
