@@ -44,6 +44,9 @@ Afin d'améliorer le code nous avons créé des **gardes** qui correspondent à 
 Pour faciliter le suivi, nous avons créé des **traces** qui indiquent les actions effectuées.
 
 ## Alice et Bob
+<p align="center">
+    <img src="https://user-images.githubusercontent.com/91531132/217011692-a1076390-2992-4eaf-9f78-7cdb414af737.png" width=300 height=300>
+</p>
 
 ## Tests
 Les tests unitaires ont été faits avec [unittest](https://docs.python.org/fr/3/library/unittest.html).
