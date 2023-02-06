@@ -1,4 +1,14 @@
-# Validation
+# Projet de Validation
+Ce projet a été réalisé par **Yassine KARMOUNI**, **Souhaila NOUINOU** et **Sam NZONGANI** dans le cadre du cours de validation à l'ENSTA Bretagne en filière CSN.
+
+L'objectif est de faire du model checking, c'est à dire de vérifier si le modèle d'un système satisfait une propriété. Par exemple, on souhaite vérifier qu'un programme ne se bloque pas, qu'une variable n'est jamais nulle, etc.
+
+![image](https://user-images.githubusercontent.com/91531132/216981435-b8f90573-0787-429a-a9a6-766ae8c40744.png)
+
+## Description
+La première étape est le parcours de graphe. En théorie des graphes, un parcours de graphe est un algorithme consistant à explorer les sommets d'un graphe de proche en proche à partir d'un sommet initial. Nous avons commencé par un parcours en largeur (breach first algorithm).
+
+![image](https://user-images.githubusercontent.com/91531132/216988989-38f0a732-4e5e-4c60-ad4c-2f0c50367b0e.png)
 
 Séance 1 :
 
