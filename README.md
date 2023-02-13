@@ -46,13 +46,16 @@ Pour faciliter le suivi, nous avons créé des **traces** qui indiquent les acti
 ## Alice et Bob
 Alice et Bob souhaitent vivent chacun dans leur maison. Ils ont en revanche un jardin partagé.
 Ils ne peuvent accéder a ce jardin que chacun a leur tour. Nous avons donc un problème d'exclusion mutuelle.
+
 Nous avons modéliser le problème avec des flags. Selon si Alice ou Bob veut entrer, son flag change de position (1 ou 0).
 Nous avons créé plusieurs fonctions pour modéliser les différents comportements possibeles.
 Le schéma ci-dessous illustre bien notre problème.
+
 <p align="center">
     <img src="https://user-images.githubusercontent.com/91531132/217011692-a1076390-2992-4eaf-9f78-7cdb414af737.png" width=360 height=150>
 </p>
 
 ## Tests
 Les tests unitaires ont été faits avec [unittest](https://docs.python.org/fr/3/library/unittest.html).
-Dans la dernière version du projet, les test ont été remplacé par des main dans chaque fichier. Ceci simplifie le test de chauque feature
+
+Dans la dernière version du projet, les test ont été remplacé par des main dans chaque fichier. Ceci simplifie le test de chaque feature
