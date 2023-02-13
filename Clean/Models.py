@@ -2,9 +2,9 @@ from abc import abstractmethod
 
 
 class TransitionRelation:
-    '''
+    """
     A class that represents a contract
-    '''
+    """
 
     @abstractmethod
     def roots(self):
@@ -82,9 +82,9 @@ class SemanticTransitionRelations:
 
 
 class STR2TR(TransitionRelation):
-    '''
+    """
     Class to transform a STR object to a TR object
-    '''
+    """
 
     def __init__(self, str):
         self.operand = str
@@ -101,7 +101,6 @@ class STR2TR(TransitionRelation):
             target = self.operand.execute(a, c)
             targets.extend(target)
         return targets
-
 
 
 class IsAcceptingProxy(IdentityProxy):

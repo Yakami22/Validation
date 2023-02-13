@@ -1,7 +1,7 @@
 from Clean.Models import SemanticTransitionRelations
 
 
-class iSTR:
+class Istr:
     def __init__(self, str):
         self.operand = str
 
@@ -20,8 +20,9 @@ class iSTR:
         return targets[conf](i)
 
 
-class BuchiSemantics(iSTR):
-    def __init__(self, t):
+class BuchiSemantics(Istr):
+    def __init__(self, t, str):
+        super().__init__(str)
         self.ini = t[0]
         self.delta = t[1]
         self.pred = t[2]
@@ -58,7 +59,7 @@ class KripkeBuchiSTR(SemanticTransitionRelations):
         k_actions = self.lhs.actions(kripke_src)
         num_actions = len(k_actions)
         for ka in k_actions:
-            ktarget = self.lhs.execute(kripke_src, ka)  # _, ktarget + uncomment STR2OSTR + add layer
+            ktarget = self.lhs.execute(kripke_src, ka)
             if ktarget is None:
                 num_actions -= 1
             self.get_synchronous_actions(ktarget, buchi_src, synchronous_actions)

@@ -26,7 +26,6 @@ def print_binary(s):
 
 
 if __name__ == '__main__':
-
     x = 6
     [pred, found, count, target], known = predicate_finder(NBits([0], 3), lambda n: n == x)
     print(f'{x} reachable, found: ', found, ' [', target, '] explored ', count, 'nodes, known: ', print_binary(known))

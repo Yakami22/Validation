@@ -15,7 +15,7 @@ class ProgramCounterConfig:
         return str(self.pc)
 
 
-def Programcounter(max):
+def program_counter(max):
     soup = BehaviorSoup(ProgramCounterConfig())
 
     def inc(c):
