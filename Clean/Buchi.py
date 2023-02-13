@@ -1,5 +1,4 @@
 from Clean.Models import SemanticTransitionRelations
-from soup.SemanticTransitionRelation import SemanticTransitionRelation
 
 
 class iSTR:
@@ -14,11 +13,13 @@ class iSTR:
         return actions
 
     def execute(self, i, conf, actions):
-        targets =[]
+        targets = []
         for a in actions(conf):
-            target = self.operand.execute(conf,a)
+            target = self.operand.execute(conf, a)
             target.append(target)
         return targets[conf](i)
+
+
 class BuchiSemantics(iSTR):
     def __init__(self, t):
         self.ini = t[0]
@@ -38,7 +39,8 @@ class BuchiSemantics(iSTR):
     def execute(self, i, conf, a):
         return a[1]
 
-class KripkeBuchiSTR(SemanticTransitionRelation):
+
+class KripkeBuchiSTR(SemanticTransitionRelations):
     def __init__(self, lhs, rhs):
         self.lhs = lhs
         self.rhs = rhs
@@ -67,7 +69,7 @@ class KripkeBuchiSTR(SemanticTransitionRelation):
 
     def get_synchronous_actions(self, kripke_c, buchi_c, io_synca):
         buchi_actions = self.rhs.actions(kripke_c, buchi_c)
-        return io_synca.extend(map(lambda ba:(kripke_c, ba), buchi_actions))
+        return io_synca.extend(map(lambda ba: (kripke_c, ba), buchi_actions))
 
     def execute(self, conf, action):
         ktarget, baction = action

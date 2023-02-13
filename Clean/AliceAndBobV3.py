@@ -1,10 +1,8 @@
-from Clean.Algorithms import predicate_model_checker, loop_model_checker, predicate_model_checker_v2
-from Clean.Buchi import BuchiSemantics, KripkeBuchiSTR
-from Clean.Models import STR2TR
+from Clean.Algorithms import loop_model_checker, predicate_model_checker_v2
 from Clean.SoupRules import BehaviorSoup, BehaviorSoupSemantics
 
 
-class ABConfig(list):
+class AliceBobConfig(list):
     def __init__(self):
         list.__init__(self, [-1, -1])
 
@@ -12,6 +10,9 @@ class ABConfig(list):
         return self[0] + 10 * self[1]
 
     def __str__(self):
+        """
+        This method is used for our pretty printer
+        """
         am, aj, bm, bj = '    ', '    ', '    ', '    '
         if self[0] == -1:
             am = '\033[1;32;40m A  \033[0m'
@@ -26,26 +27,21 @@ class ABConfig(list):
         else:
             bm = '\033[1;36;40mB ok\033[0m'
         res = f"""
-Maison Alice {am}                   -- Maison
-Maison           -- jardin {aj}{bj} -- Maison Bob {bm}
-Maison                                 Maison"""
-
-        res = f"""
-    ) )        /\                                                 ) )        /\\
-   =====      /  \                                               =====      /  \\
-  _|___|_____/ __ \____________                                 _|___|_____/ __ \____________
+               /\                                                            /\\
+              /  \                                                          /  \\
+  ___________/ __ \____________                                 ___________/ __ \____________
  |::::::::::/ |  | \:::::::::::|                               |::::::::::/ |  | \:::::::::::|
  |:::::::::/  ====  \::::::::::|                               |:::::::::/  ====  \::::::::::|
  |::::::::/__________\:::::::::|                               |::::::::/__________\:::::::::|
  |_________|  ____  |__________|                               |_________|  ____  |__________|
   | ______ | / || \ | _______ |                                 | ______ | / || \ | _______ |
   ||  |   || ====== ||   |   ||                                 ||  |   || ====== ||   |   ||
-  ||--+---|| |{am}| ||---+---||         {aj}{bj}                ||--+---|| |{bm}| ||---+---||
-  ||__|___|| |   o| ||___|___||                                 ||__|___|| |   o| ||___|___||
-  |========| |____| |=========| -^^-^^^^^-^^-^^^^-^^-^^^--^^^-- |========| |____| |=========|
- (^^-^^^^^-|________|-^^^--^^^)  ,, , ,, ,,   ,,, , ,,,, ,, ,  (^^-^^^^^-|________|-^^^--^^^)
- (,, , ,, ,/________\,,,, ,, ,)  ,, , ,, , ,, ,, ,, ,,,, ,, ,  (,, , ,, ,/________\,,,, ,, ,)
-','',,,,' /__________\,,,',',;;  ,, , ,, , ,, ,, ,, ,,,, ,, , ','',,,,' /__________\,,,',',;;
+  ||--+---|| |{am}| ||---+---||        {aj}   {bj}              ||--+---|| |{bm}| ||---+---||
+  ||__|___|| |   -| ||___|___||                                 ||__|___|| |   -| ||___|___||
+  |========| |____| |=========|  ****************************   |========| |____| |=========|
+ (^^-^^^^^-|________|-^^^--^^^)  ----------------------------  (^^-^^^^^-|________|-^^^--^^^)
+ (,, , ,, ,/________\,,,, ,, ,) ------------------------------ (,, , ,, ,/________\,,,, ,, ,)
+','',,,,' /__________\,,,',',;; '''''''''''''''''''''''''''''' ','',,,,' /__________\,,,',',;;
 
 
 
@@ -79,37 +75,35 @@ def alice_action_def(b):
 
 
 def alice_soup():
-    i_conf = ABConfig()
-    soup = BehaviorSoup(i_conf)
+    i_conf = AliceBobConfig()
+    soup_beh = BehaviorSoup(i_conf)
     for i in range(2):
         for j in range(3):
-            soup.add(f'{i}-{j}', alice_guard_def(i), alice_action_def(i))
-    return soup
+            soup_beh.add(f'{i}-{j}', alice_guard_def(i), alice_action_def(i))
+    return soup_beh
 
 
 def alice_is_accepted(c):
     return c[0] == 1 and c[1] == 1
 
 
-def a_in_cs(c):
+def alice_in_cs(c):
     return c[0] == 0
 
 
-def b_in_cs(c):
+def bob_in_cs(c):
     return c[1] == 0
 
 
-def exclusion_buchi():
+def bucchi_exclusion():
     delta = {
-        0: [(lambda kc: True, 0), (lambda kc: a_in_cs(kc) and b_in_cs(kc), 1)],
+        0: [(lambda kc: True, 0), (lambda kc: alice_in_cs(kc) and bob_in_cs(kc), 1)],
         1: [(lambda kc: True, 1)]
     }
     return 0, delta, lambda c: c == 1
 
 
 if __name__ == '__main__':
-    print('---- Alice & Bob ----\n')
-
     print('\n-- Predicate Model Checker --')
     soup = alice_soup()
     behavior_soup = BehaviorSoupSemantics(soup)
@@ -121,5 +115,3 @@ if __name__ == '__main__':
     print('\n-- Loops --\n')
     head, loop = loop_model_checker(behavior_soup, alice_is_accepted)
     print(f'Head : {head}\nLoop : {loop}')
-
-

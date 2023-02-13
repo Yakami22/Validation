@@ -1,22 +1,8 @@
 import inspect
 from collections import deque
-
 from Clean.Models import ParentTraceProxy, STR2TR, IsAcceptingProxy, ParentStoreProxy
 from Clean.Traversal import predicate_finder
 
-
-def get_trace_v2(afind_actepting_bfs, parentProxy):
-    result, tmp = afind_actepting_bfs(parentProxy)
-    if result:
-        trace = []
-        intial = parentProxy.initial()[0]
-        while tmp != intial:
-            # trace.append(tmp)
-            trace.extend(tmp)
-            tmp = parentProxy.parents[tmp]
-        trace.append(intial)
-        trace.reverse()
-        return trace
 
 def get_trace(parents, n, i):
     trace = [n]
@@ -39,11 +25,25 @@ def get_trace(parents, n, i):
     return trace
 
 
-def find_accepting_bfs(g, initial=None):
+def get_trace_v2(a_find_accepting_bfs, parent_proxy):
+    result, tmp = a_find_accepting_bfs(parent_proxy)
+    if result:
+        trace = []
+        intial = parent_proxy.initial()[0]
+        while tmp != intial:
+            # trace.append(tmp)
+            trace.extend(tmp)
+            tmp = parent_proxy.parents[tmp]
+        trace.append(intial)
+        trace.reverse()
+        return trace
+
+
+def bfs_for_accept(g, initial=None):
     known = set()
-    frontiere = deque()
+    frontier = deque()
     at_start = True
-    while frontiere or at_start:
+    while frontier or at_start:
         if at_start:
             if initial:
                 neighbours = initial
@@ -51,54 +51,79 @@ def find_accepting_bfs(g, initial=None):
                 neighbours = g.initial()
             at_start = False
         else:
-            conf = frontiere.popleft()
+            conf = frontier.popleft()
             neighbours = g.next(conf)
         for n in neighbours:
             if g.is_accepting(n):
                 return True, n
             if n not in known:
                 known.add(n)
-                frontiere.append(n)
+                frontier.append(n)
     return False, None
 
 
-def find_loop(g):
+def bfs_for_reachable(g, start, end):
     known = set()
-    frontiere = deque()
-    at_start = True
-    while frontiere or at_start:
-        if at_start:
-            neighbours = g.initial()
-            at_start = False
-        else:
-            neighbours = g.next(frontiere.popleft())
-        for n in neighbours:
-            if g.is_accepting(n):
-                if is_reachable_bfs(g, n, n):
-                    return True, n
-            if n not in known:
-                known.add(n)
-                frontiere.append(n)
-    return False, None
-
-
-def is_reachable_bfs(g, start, end):
-    known = set()
-    frontiere = deque()
+    frontier = deque()
     neighbours = [start]
     for n in neighbours:
         if n not in known:
             known.add(n)
-            frontiere.append(n)
-    while frontiere:
-        neighbours = g.next(frontiere.popleft())
+            frontier.append(n)
+    while frontier:
+        neighbours = g.next(frontier.popleft())
         for n in neighbours:
             if n == end:
                 return True
             if n not in known:
                 known.add(n)
-                frontiere.append(n)
+                frontier.append(n)
     return False
+
+
+def finding_loop(g):
+    known = set()
+    frontier = deque()
+    at_start = True
+    while frontier or at_start:
+        if at_start:
+            neighbours = g.initial()
+            at_start = False
+        else:
+            neighbours = g.next(frontier.popleft())
+        for n in neighbours:
+            if g.is_accepting(n):
+                if bfs_for_reachable(g, n, n):
+                    return True, n
+            if n not in known:
+                known.add(n)
+                frontier.append(n)
+    return False, None
+
+
+def get_loop_trace(a_find_loop_bfs, parent_proxy, loop_node):
+    result, final = a_find_loop_bfs(parent_proxy, loop_node)
+    if result:
+        trace = [final]
+        tmp = parent_proxy.parents[final]
+        while tmp != final:
+            trace.append(tmp)
+            tmp = parent_proxy.parents[tmp]
+        trace.append(final)
+        trace.reverse()
+        return trace
+
+
+def loop_model_checker(behavior_soup, is_accepted):
+    str2tr = STR2TR(behavior_soup)
+    a_accepting_proxy = IsAcceptingProxy(str2tr, is_accepted)
+    a_parent_store = ParentStoreProxy(a_accepting_proxy)
+    a_parent_store2 = ParentStoreProxy(a_accepting_proxy)
+    trace = get_trace_v2(bfs_for_accept, a_parent_store)
+    loop_node = finding_loop(a_parent_store)[1]
+    loop_node = a_parent_store2.next(loop_node)
+    loop_trace = get_loop_trace(bfs_for_accept, a_parent_store2, loop_node)
+    return trace, loop_trace
 
 
 def predicate_model_checker(transition_relation, predicate):
@@ -111,41 +136,16 @@ def predicate_model_checker(transition_relation, predicate):
 
     if found is True:
         the_trace = get_trace(op_tracer.parents, target, op_tracer.roots())
-        trace_string = f'\n{"-" * 20}\n'.join(str(x) for x in the_trace)
         trace_string = f'-'.join(str(x) for x in the_trace)
         print(f'The trace is: \n{trace_string}')
 
-def predicate_model_checker_v2(behavior_soup, isAccepted):
+
+def predicate_model_checker_v2(behavior_soup, is_accepted):
     str2tr = STR2TR(behavior_soup)
-    aAcceptingProxy = IsAcceptingProxy(str2tr, isAccepted)
-    aParentStore = ParentStoreProxy(aAcceptingProxy)
-    trace = get_trace_v2(find_accepting_bfs, aParentStore)
+    a_accepting_proxy = IsAcceptingProxy(str2tr, is_accepted)
+    a_parent_store = ParentStoreProxy(a_accepting_proxy)
+    trace = get_trace_v2(bfs_for_accept, a_parent_store)
     return trace
-
-def get_loop_trace(afind_loop_bfs, parentProxy, loopNode):
-    result, final = afind_loop_bfs(parentProxy, loopNode)
-    if result:
-        trace = [final]
-        tmp = parentProxy.parents[final]
-        while tmp != final:
-            trace.append(tmp)
-            tmp = parentProxy.parents[tmp]
-        trace.append(final)
-        trace.reverse()
-        return trace
-
-
-
-def loop_model_checker(behavior_soup, isAccepted):
-    str2tr = STR2TR(behavior_soup)
-    aAcceptingProxy = IsAcceptingProxy(str2tr, isAccepted)
-    aParentStore = ParentStoreProxy(aAcceptingProxy)
-    aParentStore2 = ParentStoreProxy(aAcceptingProxy)
-    trace = get_trace_v2(find_accepting_bfs, aParentStore)
-    loopNode = find_loop(aParentStore)[1]
-    loopNode = aParentStore2.next(loopNode)
-    loop_trace = get_loop_trace(find_accepting_bfs, aParentStore2, loopNode)
-    return trace, loop_trace
 
 
 if __name__ == '__main__':
